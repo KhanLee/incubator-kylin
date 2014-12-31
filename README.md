@@ -1,3 +1,34 @@
-Apache Incubator Kylin project
+The Apache Kylin website is built using [Jekyll](http://jekyllrb.com/).
 
-This README is a place-holder
+# Developing and Previewing the Website
+
+To preview the website through GitHub Pages: <http://apache.github.io/kylin>
+
+To preview the website on your local machine:
+
+```bash
+jekyll serve --config _config.yml,_config-prod.yml
+```
+
+# Compiling the Website
+
+Once the website is ready, you'll need to compile the site to static HTML so that it can then be published to Apache. This is as simple as running the `jekyll build` command. The _config-prod.yml configuration file causes a few changes to the site:
+
+* The `noindex` meta tag is removed. We want the production site to be indexed by search engines, but we don't want the staging site to be indexed.
+* The base URL is set to `/`. The production site is at `/`, whereas the staging site is at `/kylin-webiste/`.
+
+```bash
+jekyll build --config _config.yml,_config-prod.yml
+```
+
+# Uploading to the Apache Website (Kylin Committers Only, these directions will apply when Kylin becomes a top-level project)
+
+Apache project websites use a system called svnpubsub for publishing. Basically, the static HTML needs to be pushed by one of the committers into the Apache SVN.
+
+```bash
+svn co https://svn.apache.org/repos/asf/kylin/site/trunk/content/kylin ../_site-apache
+cp -R _site/* ../_site-apache/
+cd ../_site-apache
+```
+
+Then `svn add` and `svn rm` as needed, and commit the changes via `svn commit -m "Website update"`. Note that once changes are committed via `svn commit`, they will immediately be visible on the live site: <http://kylin.apache.org>.
