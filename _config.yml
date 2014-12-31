@@ -1,0 +1,12 @@
+title: Apache Kylin - MOLAP queries for Hadoop
+title_suffix: Apache Kylin # This is appended to every page title on the site 
+
+email: tdunning@apache.org
+permalink: pretty
+
+description: > # this means to ignore newlines until "baseurl:"
+  Apache Kylin is a MOLAP engine that runs on Hadoop
+
+baseurl: "/kylin" # Base URL when hosted on GitHub Pages (kylin repository under apache account)
+noindex: 1
+markdown: redcarpet
